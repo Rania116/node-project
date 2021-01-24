@@ -19,7 +19,9 @@ app.use(require('./routes/user'))
 
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost:27017/project', { useUnifiedTopology: true }, { useNewUrlParser: true })
+const { MONGODB_URI } = process.env;
+
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true }, { useNewUrlParser: true })
 
 mongoose.connection.on('connected', () => {
     console.log('You are now connected to Mongo')
